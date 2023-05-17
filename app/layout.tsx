@@ -8,6 +8,7 @@ import { Nunito } from 'next/font/google'
 import ToasterProvider from './providers/ToasterProvider'
 import LoginModal from './components/modal/LoginModal'
 import getCurrentUser from './actions/getCurrentUser'
+import RentModal from './components/modal/RentModal'
 
 
 export const metadata = {
@@ -25,6 +26,8 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
   const currentUser = await getCurrentUser();
+
+  console.log(currentUser);
   return (
     <html lang="en">
       <body className={font.className}>
@@ -32,6 +35,7 @@ export default async function RootLayout({
           <ToasterProvider />
           <LoginModal />
           <RegisterModal />
+          <RentModal />
           <Navbar currentUser={currentUser} />
         </ClientOnly>
         <main>{children}</main>
